@@ -1,5 +1,7 @@
 <template>
+<div class="m-32">
   test
+</div>
 </template>
 
 <script lang="ts">
