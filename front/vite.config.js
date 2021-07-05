@@ -8,7 +8,7 @@ export default defineConfig({
   alias: [
     {
       find: '@/',
-      replacement: `./src/`
+      replacement: `${__dirname}/src/`
     }
   ]
 });
