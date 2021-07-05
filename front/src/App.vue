@@ -1,10 +1,16 @@
 <template>
-<div class="m-32">
-  test
-</div>
+  <div class="m-32">
+    <TextEditor />
+  </div>
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
+import TextEditor from '@/components/TextEditor/index.vue';
+
+export default defineComponent({
+  components: {TextEditor}
+});
 </script>
 
 <style>
