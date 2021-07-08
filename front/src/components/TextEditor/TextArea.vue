@@ -1,6 +1,6 @@
 <template>
   <textarea
-    v-model="inputText"
+    v-model="markdownText"
     class="border border-gray-800 w-full textarea-height ml-1 focus:outline-blue-50 p-4"
   />
 </template>
@@ -10,9 +10,9 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
-    const inputText = ref<string>('');
+    const markdownText = ref<string>('');
     return {
-      inputText
+      markdownText
     };
   }
 });
