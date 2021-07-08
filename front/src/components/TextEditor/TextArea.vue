@@ -1,7 +1,7 @@
 <template>
   <textarea
     v-model="inputText"
-    class="block border-solid border-2 outline-none w-full textarea-height"
+    class="border border-gray-800 outline-none w-full textarea-height ml-1"
   />
 </template>
 
