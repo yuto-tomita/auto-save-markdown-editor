@@ -1,5 +1,7 @@
 <template>
-  <div class="border border-gray-800 previewarea-height w-full mx-0.5" />
+  <div class="border border-gray-800 previewarea-height w-full mx-0.5">
+    <span>PreviewArea</span>  
+  </div>
 </template>
 
 <script lang="ts">
