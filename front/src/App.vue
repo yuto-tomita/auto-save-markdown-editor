@@ -1,20 +1,15 @@
 <template>
   <h1>AutoSaveMarkdownEditor</h1>
-  <div class="flex">
-    <TextEditor />
-    <PreviewArea />
-  </div>
+  <TextEditor @onChangeTextArea="handleEvent" />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import TextEditor from '@/components/TextEditor/TextArea.vue';
-import PreviewArea from '@/components/PreviewEditor/PreviewArea.vue';
 
 export default defineComponent({
   components: {
-    TextEditor,
-    PreviewArea
+    TextEditor
   }
 });
 </script>
