@@ -1,5 +1,7 @@
 <template>
-  <h1>AutoSaveMarkdownEditor</h1>
+  <h1 class="text-center">
+    AutoSaveMarkdownEditor
+  </h1>
   <TextEditor @onChangeTextArea="handleEvent" />
 </template>
 
@@ -20,6 +22,5 @@ export default defineComponent({
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
