@@ -4,7 +4,7 @@
       v-model="markdownText"
       class="border border-gray-800 w-full textarea-height ml-1 focus:outline-blue-50 p-4"
     />
-    <PreviewArea />
+    <PreviewArea :preview-markdown="conversionToHtml" />
   </div>
 </template>
 
@@ -20,23 +20,23 @@ export default defineComponent({
   emits: ['onChangeTextArea'],
   setup(_, { emit }) {
     const markdownText = ref<string>('');
-    const html = ref<string>('');
+    const conversionToHtml = ref<string>('');
 
     /** 入力されたmarkdownテキストをHTML形式に変換させる */
     watchEffect(() => {
-      html.value = marked(markdownText.value);
-      emit('onChangeTextArea', html);
+      conversionToHtml.value = marked(markdownText.value);
+      emit('onChangeTextArea', conversionToHtml);
     });
 
     return {
       markdownText,
-      html
+      conversionToHtml
     };
   }
 });
 </script>
 
-<style>
+<style scoped>
 .textarea-height {
   height: 80vh;
 }
