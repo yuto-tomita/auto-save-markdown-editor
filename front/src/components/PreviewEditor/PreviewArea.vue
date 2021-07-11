@@ -1,7 +1,5 @@
 <template>
-  <div class="border border-gray-800 previewarea-height w-full mx-0.5">
-    <span>PreviewArea</span>
-    <!-- <div>{{ previewMarkdown }}</div> -->
+  <div class="border border-gray-800 w-full textarea-height ml-1 focus:outline-blue-50 p-4">
     <div v-html="previewMarkdown" />
   </div>
 </template>
