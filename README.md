@@ -2,11 +2,6 @@
 
 # 使用技術
 
-### フロント
 - Vite
-- Vue3
-- Typescript
-- Pinia
-
-### バックエンド
-未定
+- Typescript(Vue3)
+- GO
