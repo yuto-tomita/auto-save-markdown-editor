@@ -1,9 +1,25 @@
 version: "3"
 services:
+  db:
+    build: ./build/db
+    platform: linux/x86_64
+    volumes:
+      - db-store:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: test-db
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      TZ: Asia/Tokyo
+    ports:
+      - "3306:3306"
   app:
     build:
       context: .
-      dockerfile: ./build/Dockerfile
+      dockerfile: ./build/rest/Dockerfile
     tty: true
     volumes:
       - ./cmd:/go/src/app
+
+volumes:
+  db-store:
