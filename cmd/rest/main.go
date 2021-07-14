@@ -14,18 +14,16 @@ func connectDB() {
 	if err != nil {
 		fmt.Println("環境変数読み込みエラー")
 	}
-	fmt.Println(os.Getenv("DB_NAME"))
+	
+	db, err := sql.Open(
+		os.Getenv("DB_CONNECTION"), os.Getenv("DB_NAME") + ":" + os.Getenv("DB_PASS") + "@tcp(mysql-container:3306)/" + os.Getenv("DB_NAME"))
+	if (err != nil) {
+		fmt.Println("DB接続エラー")
+	}
+
+	fmt.Println(db)
 }
 
 func main() {
 	connectDB()
-	db, err := sql.Open("mysql", "root:rootpassword@tcp(mysql-container:3306)/test-db")
-
-	if err != nil {
-		fmt.Println("mysql接続エラー")
-	}
-
-	fmt.Println(db)
-
-	fmt.Println("Hello world!")
 }
