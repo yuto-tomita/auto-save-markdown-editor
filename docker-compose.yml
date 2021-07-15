@@ -20,6 +20,14 @@ services:
     tty: true
     volumes:
       - ./cmd:/go/src/app
+    ports:
+      - "3000"
+  nginx:
+    build: ./build/nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - "app"
 
 volumes:
   db-store:
