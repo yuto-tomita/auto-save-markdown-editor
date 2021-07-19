@@ -11,7 +11,9 @@ import (
 
 func ConnectDB() *sql.DB {
 	err := godotenv.Load()
+
 	fmt.Println(os.Getenv("DB_CONNECTION"))
+
 	if err != nil {
 		fmt.Println("環境変数読み込みエラー")
 	}
