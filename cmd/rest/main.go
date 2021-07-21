@@ -1,20 +1,17 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	r := mux.NewRouter()
-	r.HandleFunc("/", index)
-
-	http.Handle("/", r)
-	http.ListenAndServe(":3000", nil)
-}
-
-func index(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("Hello world")
+	engine := gin.Default()
+	engine.GET("/", func(req *gin.Context) {
+		req.JSON(http.StatusOK, gin.H {
+			"message": "hello world",
+		})
+	})
+	engine.Run(":3000")
 }
