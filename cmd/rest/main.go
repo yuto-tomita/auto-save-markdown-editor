@@ -1,17 +1,28 @@
 package main
 
 import (
+	"fmt"
+	"myapp/pkg/db"
 	"net/http"
+
+	"myapp/pkg/api"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-	engine := gin.Default()
-	engine.GET("/", func(req *gin.Context) {
+	router := gin.Default()
+	db := db.ConnectDB()
+	fmt.Println(db)
+
+	router.POST("/saveMarkDown", )
+
+	router.GET("/", func(req *gin.Context) {
+		str := api.GetAll(db)
+		fmt.Println(str)
 		req.JSON(http.StatusOK, gin.H {
-			"message": "hello world",
+			"message": str,
 		})
 	})
-	engine.Run(":3000")
+	router.Run(":3000")
 }
