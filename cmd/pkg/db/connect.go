@@ -1,24 +1,27 @@
 package db
 
 import (
-	"database/sql"
 	"fmt"
 	"os"
 
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/joho/godotenv"
 )
 
-func ConnectDB() *sql.DB {
+func ConnectDB() *gorm.DB {
 	err := godotenv.Load()
-
-	fmt.Println(os.Getenv("DB_CONNECTION"))
 
 	if err != nil {
 		fmt.Println("環境変数読み込みエラー")
 	}
 
-	db, err := sql.Open(os.Getenv("DB_CONNECTION"), os.Getenv("DB_NAME") + ":" + os.Getenv("DB_PASS") + "@tcp(mysql-container:3306)/" + os.Getenv("DB_NAME"))
+	connectTemplate := "%s:%s@%s/%s"
+
+	connect := fmt.Sprintf(connectTemplate, os.Getenv("DB_USER"), os.Getenv("DB_PASS"), os.Getenv("DB_PROTOCOL"), os.Getenv("DB_NAME"))
+
+	db, err := gorm.Open(os.Getenv("DB_CONNECTION"), connect)
 	
 	if (err != nil) {
 		fmt.Println("DB接続エラー")
