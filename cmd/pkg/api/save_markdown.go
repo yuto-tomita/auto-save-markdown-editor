@@ -11,6 +11,8 @@ type draft struct {
 }
 
 func GetAll(db *gorm.DB) *gorm.DB {
-	result := db.Find(&draft{})
+	var draftList []draft
+	result := db.Find(&draftList)
+
 	return result
 }
