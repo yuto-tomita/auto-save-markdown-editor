@@ -1,13 +1,16 @@
 package api
 
 import (
-	domain "myapp/pkg/model"
-
 	"github.com/jinzhu/gorm"
 )
 
+type draft struct {
+	ID int `json:id`
+	Markdown_text string `json:markdown_text`
+	UserId int `json:user_id`
+}
+
 func GetAll(db *gorm.DB) *gorm.DB {
-	draft := domain.Draft{}
-	result := db.Find(draft)
+	result := db.Find(&draft{})
 	return result
 }
