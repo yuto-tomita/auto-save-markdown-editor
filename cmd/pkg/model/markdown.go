@@ -1,4 +1,4 @@
-package domain
+package model
 
 type Draft struct {
 	ID int `gorm:"primary_key"`
