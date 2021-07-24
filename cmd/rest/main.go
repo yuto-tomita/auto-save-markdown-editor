@@ -7,13 +7,17 @@ import (
 
 	"myapp/pkg/api"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	router := gin.Default()
 	db := db.ConnectDB()
-	fmt.Println(db)
+
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"*"}
+	router.Use(cors.New(config))
 
 	router.POST("/saveMarkDown", )
 
