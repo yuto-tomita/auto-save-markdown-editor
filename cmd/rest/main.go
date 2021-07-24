@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"myapp/pkg/db"
 	"net/http"
 
@@ -22,10 +21,10 @@ func main() {
 	router.POST("/saveMarkDown", )
 
 	router.GET("/", func(req *gin.Context) {
-		str := api.GetAll(db)
-		fmt.Println(str)
+		draftList := api.GetAll(db)
+
 		req.JSON(http.StatusOK, gin.H {
-			"message": str,
+			"res": draftList.Value,
 		})
 	})
 	router.Run(":3000")
