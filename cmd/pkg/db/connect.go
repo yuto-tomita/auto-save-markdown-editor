@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"os"
 
+	"myapp/pkg/domain"
+
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -26,6 +28,10 @@ func ConnectDB() *gorm.DB {
 	if (err != nil) {
 		fmt.Println("DB接続エラー")
 	}
+	fmt.Println(&domain.Draft{})
+	
+	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&domain.Draft{})
+	// db.AutoMigrate(&domain.Draft{})
 
 	return db
 }
