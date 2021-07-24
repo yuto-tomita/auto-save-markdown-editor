@@ -1,7 +1,6 @@
 <template>
   <h1 class="text-center">
     AutoSaveMarkdownEditor
-    {{ res }}
   </h1>
   <TextEditor @onChangeTextArea="handleEvent" />
 </template>
