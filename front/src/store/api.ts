@@ -13,9 +13,7 @@ export const apiStore = defineStore({
   actions: {
     async getDraftList (): Promise<void> {
       try {
-				console.log('come');
         const res = await axios.get(import.meta.env.VITE_API_URI);
-				console.log(res);
 
 				this.DraftList = res.data;
       } catch (e) {
