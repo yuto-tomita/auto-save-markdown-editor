@@ -19,6 +19,15 @@ export const apiStore = defineStore({
       } catch (e) {
         console.log(e);
       }
+    },
+    async saveMarkdown (): Promise<void> {
+      try {
+        await axios.post(`${import.meta.env.VITE_API_URI}/saveMarkdown`, {
+          markdown_text: 'testhoge'
+        });
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 });
