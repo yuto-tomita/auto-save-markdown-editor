@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"myapp/pkg/db"
 	"net/http"
 
@@ -18,7 +19,9 @@ func main() {
 	config.AllowOrigins = []string{"*"}
 	router.Use(cors.New(config))
 
-	router.POST("/saveMarkDown", )
+	router.POST("/saveMarkDown", func(req *gin.Context) {
+		fmt.Println(req.PostForm("markdown_text"))
+	})
 
 	router.GET("/", func(req *gin.Context) {
 		draftList := api.GetAll(db)
