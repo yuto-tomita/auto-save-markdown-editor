@@ -3,6 +3,9 @@
     AutoSaveMarkdownEditor
   </h1>
   <TextEditor @onChangeTextArea="handleEvent" />
+  <button @click="saveMarkdown">
+    clickMe!
+  </button>
 </template>
 
 <script lang="ts">
@@ -15,7 +18,6 @@ export default defineComponent({
     TextEditor
   },
   setup () {
-    console.log('test');
     const test = apiStore();
     const res = ref({});
 
@@ -31,7 +33,15 @@ export default defineComponent({
       }
     }
 
-    return { test, res };
+    async function saveMarkdown () {
+      try {
+        await test.saveMarkdown();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    return { test, res, saveMarkdown };
   }
 });
 </script>

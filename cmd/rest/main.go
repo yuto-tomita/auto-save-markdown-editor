@@ -21,11 +21,14 @@ func main() {
 
 	router.POST("/saveMarkDown", func(req *gin.Context) {
 		fmt.Println(req.PostForm("markdown_text"))
+
+		req.JSON(http.StatusOK, gin.H {
+		})
 	})
 
 	router.GET("/", func(req *gin.Context) {
 		draftList := api.GetAll(db)
-
+		fmt.Println(draftList)
 		req.JSON(http.StatusOK, gin.H {
 			"res": draftList.Value,
 		})
