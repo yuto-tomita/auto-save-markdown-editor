@@ -6,6 +6,7 @@ import (
 	"net/http"
 
 	"myapp/pkg/api"
+	"myapp/pkg/model"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
@@ -20,10 +21,16 @@ func main() {
 	router.Use(cors.New(config))
 
 	router.POST("/saveMarkDown", func(req *gin.Context) {
-		fmt.Println(req.PostForm("markdown_text"))
+		var json model.PostJsonForm
+		
+		if err := req.ShouldBindJSON(&json); err != nil {
+			req.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
 
-		req.JSON(http.StatusOK, gin.H {
-		})
+		fmt.Println(json.MarkdownText)
+
+		req.JSON(http.StatusOK, gin.H{"str": json.MarkdownText})
 	})
 
 	router.GET("/", func(req *gin.Context) {

@@ -5,3 +5,7 @@ type Draft struct {
 	Markdown_text string
 	UserId int
 }
+
+type PostJsonForm struct {
+	MarkdownText  string `json:"markdown_text"`
+}
