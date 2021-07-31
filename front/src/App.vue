@@ -18,15 +18,15 @@ export default defineComponent({
     TextEditor
   },
   setup () {
-    const test = apiStore();
+    const store = apiStore();
     const res = ref({});
 
     getDraft();
 
     async function getDraft () {
       try {
-        await test.getDraftList();
-        res.value = test.returnCalendarList;
+        await store.getDraftList();
+        res.value = store.returnCalendarList;
         // console.log(test.returnCalendarList);
       } catch (e) {
         console.log(e);
@@ -35,13 +35,13 @@ export default defineComponent({
 
     async function saveMarkdown () {
       try {
-        await test.saveMarkdown();
+        await store.saveMarkdown();
       } catch (e) {
         console.log(e);
       }
     }
 
-    return { test, res, saveMarkdown };
+    return { store, res, saveMarkdown };
   }
 });
 </script>
