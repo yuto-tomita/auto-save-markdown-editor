@@ -5,10 +5,10 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['active'],
+      opacity: ['active']
+    },
   },
-  plugins: [],
-  corePlugins: {
-    preflight: false,
-  }
+  plugins: []
 };
