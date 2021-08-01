@@ -2,6 +2,9 @@
   <h1 class="text-center">
     AutoSaveMarkdownEditor
   </h1>
+  <div class="m-3">
+    <Button label="下書きを呼び出す" />
+  </div>
   <TextEditor @onChangeTextArea="handleEvent" />
   <button @click="saveMarkdown">
     clickMe!
@@ -12,10 +15,12 @@
 import { defineComponent, ref } from 'vue';
 import TextEditor from '@/components/TextEditor/TextArea.vue';
 import { apiStore } from '@/store/api';
+import Button from '@/components/Button/Button.vue';
 
 export default defineComponent({
   components: {
-    TextEditor
+    TextEditor,
+    Button
   },
   setup () {
     const store = apiStore();
@@ -53,4 +58,5 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+
 </style>
