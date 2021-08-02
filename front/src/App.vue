@@ -9,6 +9,7 @@
   <button @click="saveMarkdown">
     clickMe!
   </button>
+  <Loading :is-loading="true" />
 </template>
 
 <script lang="ts">
@@ -16,11 +17,13 @@ import { defineComponent, ref } from 'vue';
 import TextEditor from '@/components/TextEditor/TextArea.vue';
 import { apiStore } from '@/store/api';
 import Button from '@/components/Button/Button.vue';
+import Loading from '@/components/Loading/index.vue';
 
 export default defineComponent({
   components: {
     TextEditor,
-    Button
+    Button,
+    Loading
   },
   setup () {
     const store = apiStore();
