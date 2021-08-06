@@ -2,14 +2,20 @@
   <h1 class="text-center">
     AutoSaveMarkdownEditor
   </h1>
+  {{ draftList }}
   <div class="m-3">
-    <Button label="下書きを呼び出す" />
+    <Button
+      label="下書きを呼び出す"
+      @click="getDraft"
+    />
   </div>
   <TextEditor @onChangeTextArea="handleEvent" />
-  <button @click="saveMarkdown">
-    clickMe!
-  </button>
-  <Loading :is-loading="true" />
+  <div>
+    <button @click="saveMarkdown">
+      clickMe!
+    </button>
+    <Loading :is-loading="isLoading" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -27,19 +33,21 @@ export default defineComponent({
   },
   setup () {
     const store = apiStore();
-    const res = ref({});
+    const draftList = ref({});
+    const isLoading = ref(false);
 
-    getDraft();
+    const getDraft = async () => {
+      isLoading.value = true;
 
-    async function getDraft () {
       try {
         await store.getDraftList();
-        res.value = store.returnCalendarList;
-        // console.log(test.returnCalendarList);
+        draftList.value = store.returnCalendarList;
       } catch (e) {
         console.log(e);
       }
-    }
+
+      isLoading.value = false;
+    };
 
     async function saveMarkdown () {
       try {
@@ -49,7 +57,7 @@ export default defineComponent({
       }
     }
 
-    return { store, res, saveMarkdown };
+    return { store, draftList, saveMarkdown, isLoading, getDraft };
   }
 });
 </script>

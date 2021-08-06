@@ -1,5 +1,8 @@
 <template>
-  <div class="absolute top-0 left-0 w-full h-full bg-gray-500 opacity-50 inline">
+  <div
+    v-if="isLoading"
+    class="absolute top-0 left-0 w-full h-full bg-gray-500 opacity-50 inline"
+  >
     <img
       src="../../assets/spinning-circles.svg"
       class="absolute top-2/4 left-2/4"
