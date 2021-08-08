@@ -7,5 +7,6 @@ type Draft struct {
 }
 
 type PostJsonForm struct {
+	Title string `json:"title"`
 	MarkdownText  string `json:"markdown_text"`
 }
