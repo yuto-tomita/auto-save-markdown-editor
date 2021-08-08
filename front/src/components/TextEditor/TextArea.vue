@@ -1,4 +1,11 @@
 <template>
+  <div>
+    <input
+      type="text"
+      class="border border-gray-800 w-1/2 mb-2"
+      placeholder="タイトル"
+    >
+  </div>
   <div class="flex">
     <textarea
       v-model="markdownText"
