@@ -1,6 +1,8 @@
 package api
 
 import (
+	"myapp/pkg/model"
+
 	"github.com/jinzhu/gorm"
 )
 
@@ -15,4 +17,8 @@ func GetAll(db *gorm.DB) *gorm.DB {
 	result := db.Find(&draftList)
 
 	return result
+}
+
+func SaveMarkdown(db *gorm.DB, json model.Draft) {
+	db.Create(&json)
 }
