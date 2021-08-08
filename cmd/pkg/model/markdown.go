@@ -2,8 +2,8 @@ package model
 
 type Draft struct {
 	ID int `gorm:"primary_key"`
+	Title string
 	Markdown_text string
-	UserId int
 }
 
 type PostJsonForm struct {
