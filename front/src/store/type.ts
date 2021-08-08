@@ -5,3 +5,8 @@ export interface ApiState {
 		user_id?: number
 	}
 }
+
+export interface DraftParameters {
+	title: string;
+	markdown_text: string
+}
