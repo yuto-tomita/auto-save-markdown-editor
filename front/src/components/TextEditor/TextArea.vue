@@ -1,6 +1,7 @@
 <template>
   <div>
     <input
+      v-model="title"
       type="text"
       class="border border-gray-800 w-1/2 mb-2"
       placeholder="タイトル"
@@ -19,6 +20,7 @@
 import { defineComponent, ref, watchEffect } from 'vue';
 import PreviewArea from '@/components/PreviewEditor/PreviewArea.vue';
 import marked from 'marked';
+import { apiStore } from '@/store/api';
 
 export default defineComponent({
   components: {
@@ -28,6 +30,8 @@ export default defineComponent({
   setup(_, { emit }) {
     const markdownText = ref<string>('');
     const conversionToHtml = ref<string>('');
+    const title = ref<string>('');
+    const store = apiStore();
 
     /** 入力されたmarkdownテキストをHTML形式に変換させる */
     watchEffect(() => {
@@ -35,9 +39,27 @@ export default defineComponent({
       emit('onChangeTextArea', conversionToHtml);
     });
 
+    /** タイトルとmarkdownテキストの入力値の変更を検知したときに、下書きとしてDBに保存する */
+    watchEffect(async (onInvalidate) => {
+      // title無しの場合は下書き保存をしない
+      if (!title.value) return;
+ 
+      const params = {
+        title: title.value,
+        markdown_text: markdownText.value
+      };
+
+      try {
+        await store.saveMarkdownDraft(params);
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
     return {
       markdownText,
-      conversionToHtml
+      conversionToHtml,
+      title
     };
   }
 });
