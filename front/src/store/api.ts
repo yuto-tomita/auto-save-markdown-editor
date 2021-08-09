@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const apiStore = defineStore({
 	id: 'markdownApi',
-	state: (): ApiState => ({ DraftList: {} }),
+	state: (): ApiState => ({ DraftList: [] }),
 	getters: {
     returnCalendarList (state): ApiState["DraftList"]  {
       return state.DraftList;
