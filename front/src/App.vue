@@ -13,15 +13,15 @@
       @click="getDraft"
     />
   </div>
-  <TextEditor />
+  <TextEditor :draft="draft" />
   <Loading :is-loading="isLoading" />
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, reactive, ref } from 'vue';
 import TextEditor from '@/components/TextEditor/TextArea.vue';
 import { apiStore } from '@/store/api';
-import { ApiState } from '@/store/type';
+import { ApiState, Draft } from '@/store/type';
 import Button from '@/components/Button/Button.vue';
 import Loading from '@/components/Loading/index.vue';
 import Modal from '@/components/Modal/index.vue';
@@ -38,6 +38,10 @@ export default defineComponent({
     const draftList = ref<ApiState['DraftList']>([]);
     const isLoading = ref<boolean>(false);
     const isDisplayModal = ref<boolean>(false);
+    const draft = reactive({
+      Markdown_text: '',
+      Title: ''
+    });
 
     const getDraft = async () => {
       isLoading.value = true;
@@ -54,8 +58,9 @@ export default defineComponent({
       isLoading.value = false;
     };
 
-    const setDraft = (emitData: ApiState['DraftList']) => {
-      console.log(emitData);
+    const setDraft = (emitData: Draft) => {
+      draft.Markdown_text = emitData.Markdown_text ? emitData.Markdown_text : '';
+      draft.Title = emitData.Title;
     };
 
     return {
@@ -64,7 +69,8 @@ export default defineComponent({
       isLoading,
       getDraft,
       isDisplayModal,
-      setDraft
+      setDraft,
+      draft
     };
   }
 });

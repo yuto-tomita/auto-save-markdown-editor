@@ -7,6 +7,7 @@
       placeholder="タイトル"
     >
   </div>
+  {{ draft }}
   <div class="flex">
     <textarea
       v-model="markdownText"
@@ -17,17 +18,25 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watchEffect } from 'vue';
+import { defineComponent, ref, watchEffect, PropType } from 'vue';
 import PreviewArea from '@/components/PreviewEditor/PreviewArea.vue';
 import marked from 'marked';
 import { apiStore } from '@/store/api';
+import { Draft } from '@/store/type'; 
 
 export default defineComponent({
   components: {
     PreviewArea
   },
+  props: {
+    draft: {
+      type: Object as PropType<Draft>,
+      required: false,
+      default: () => ({ Markdown_text: '', Title: '' })
+    }
+  },
   emits: ['onChangeTextArea'],
-  setup(_, { emit }) {
+  setup(props, { emit }) {
     const markdownText = ref<string>('');
     const conversionToHtml = ref<string>('');
     const title = ref<string>('');
@@ -54,6 +63,11 @@ export default defineComponent({
       } catch (e) {
         console.log(e);
       }
+    });
+
+    watchEffect(() => {
+      title.value = props.draft.Title;
+      markdownText.value = props.draft.Markdown_text ? props.draft.Markdown_text : '';
     });
 
     return {
