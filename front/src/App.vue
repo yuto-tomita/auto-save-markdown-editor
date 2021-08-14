@@ -2,18 +2,18 @@
   <Modal
     :is-display-modal="isDisplayModal"
     :draft-list="draftList"
+    @callDraft="setDraft"
   />
   <h1 class="text-center">
     AutoSaveMarkdownEditor
   </h1>
-  {{ draftList }}
   <div class="m-3">
     <Button
       label="下書きを呼び出す"
       @click="getDraft"
     />
   </div>
-  <TextEditor @onChangeTextArea="handleEvent" />
+  <TextEditor />
   <Loading :is-loading="isLoading" />
 </template>
 
@@ -54,12 +54,17 @@ export default defineComponent({
       isLoading.value = false;
     };
 
+    const setDraft = (emitData: ApiState['DraftList']) => {
+      console.log(emitData);
+    };
+
     return {
       store,
       draftList,
       isLoading,
       getDraft,
-      isDisplayModal
+      isDisplayModal,
+      setDraft
     };
   }
 });

@@ -40,7 +40,7 @@ export default defineComponent({
     });
 
     /** タイトルとmarkdownテキストの入力値の変更を検知したときに、下書きとしてDBに保存する */
-    watchEffect(async (onInvalidate) => {
+    watchEffect(async () => {
       // title無しの場合は下書き保存をしない
       if (!title.value) return;
  
