@@ -1,6 +1,6 @@
 export interface DraftList {
 	id: number;
-	markdown_text?: string
+	Markdown_text?: string
 	title: string
 }
 export interface ApiState {
@@ -9,6 +9,6 @@ export interface ApiState {
 
 export interface DraftParameters {
 	title: string;
-	markdown_text: string
+	Markdown_text: string
 }
 
