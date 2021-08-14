@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { ApiState } from '@/store/type';
+import { Draft } from '@/store/type';
 import DraftArticle from '@/components/DraftArticle/index.vue';
 
 export default defineComponent ({
@@ -35,13 +35,13 @@ export default defineComponent ({
       required: true
     },
     draftList: {
-      type: Array as PropType<ApiState['DraftList']>,
+      type: Array as PropType<Draft[]>,
       required: true
     }
   },
   emits: ['callDraft'],
   setup (_, { emit }) {
-    const callDraft = (draft: ApiState['DraftList']) => {
+    const callDraft = (draft: Draft) => {
       emit('callDraft', draft);
     };
 

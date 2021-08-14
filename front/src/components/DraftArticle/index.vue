@@ -13,12 +13,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
-import { DraftList } from '@/store/type';
+import { Draft } from '@/store/type';
 
 export default defineComponent({
 	props: {
 		draft: {
-			type: Object as PropType<DraftList>,
+			type: Object as PropType<Draft>,
 			required: true
 		}
 	}
