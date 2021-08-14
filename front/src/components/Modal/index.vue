@@ -10,7 +10,10 @@
           v-for="(draft, index) in draftList"
           :key="index"
         >
-          <DraftArticle :draft="draft" />
+          <DraftArticle
+            :draft="draft"
+            @click="callDraft(draft)"
+          />
         </div>
       </div>
     </div>
@@ -35,6 +38,16 @@ export default defineComponent ({
       type: Array as PropType<ApiState['DraftList']>,
       required: true
     }
+  },
+  emits: ['callDraft'],
+  setup (_, { emit }) {
+    const callDraft = (draft: ApiState['DraftList']) => {
+      emit('callDraft', draft);
+    };
+
+    return {
+      callDraft,
+    };
   }
 });
 </script>
