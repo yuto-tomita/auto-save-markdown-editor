@@ -1,8 +1,9 @@
 <template>
   <Modal
-    :is-display-modal="isDisplayModal"
+    v-if="isDisplayModal"
     :draft-list="draftList"
-    @callDraft="setDraft"
+    @closeModal="closeModal"
+    @keyup.esc="closeModal"
   />
   <h1 class="text-center">
     AutoSaveMarkdownEditor
@@ -63,6 +64,10 @@ export default defineComponent({
       draft.Title = emitData.Title;
     };
 
+    const closeModal = () => {
+      isDisplayModal.value = false;
+    };
+
     return {
       store,
       draftList,
@@ -70,7 +75,8 @@ export default defineComponent({
       getDraft,
       isDisplayModal,
       setDraft,
-      draft
+      draft,
+      closeModal
     };
   }
 });

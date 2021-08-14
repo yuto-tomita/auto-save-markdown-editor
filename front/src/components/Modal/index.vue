@@ -1,7 +1,7 @@
 <template>
   <div
-    v-if="isDisplayModal"
     class="absolute w-full h-full bg-gray-200 bg-opacity-70"
+    @click="emitCloseModal"
   >
     <div class="w-2/3 h-1/2 absolute bg-white top-1/4 left-margin rounded-md border-white overflow-scroll">
       <p>呼び出したい下書きを選択してください</p>
@@ -30,23 +30,19 @@ export default defineComponent ({
     DraftArticle
   },
   props: {
-    isDisplayModal: {
-      type: Boolean,
-      required: true
-    },
     draftList: {
       type: Array as PropType<Draft[]>,
       required: true
     }
   },
-  emits: ['callDraft'],
+  emits: ['closeModal'],
   setup (_, { emit }) {
-    const callDraft = (draft: Draft) => {
-      emit('callDraft', draft);
+    const emitCloseModal = (draft: Draft) => {
+      emit('closeModal', draft);
     };
 
     return {
-      callDraft,
+      emitCloseModal,
     };
   }
 });
