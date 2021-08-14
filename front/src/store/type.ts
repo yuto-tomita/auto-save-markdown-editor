@@ -1,7 +1,7 @@
 export interface DraftList {
-	id: number;
+	ID: number;
 	Markdown_text?: string
-	title: string
+	Title: string
 }
 export interface ApiState {
 	DraftList: DraftList[]
@@ -9,6 +9,6 @@ export interface ApiState {
 
 export interface DraftParameters {
 	title: string;
-	Markdown_text: string
+	markdown_text: string
 }
 
