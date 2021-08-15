@@ -5,6 +5,7 @@
     @closeModal="closeModal"
     @callDraft="setDraft"
     @keyup.esc="closeModal"
+    @deleteDraft="deleteDraft"
   />
   <h1 class="text-center">
     AutoSaveMarkdownEditor
@@ -64,13 +65,23 @@ export default defineComponent({
       draft.Markdown_text = emitData.Markdown_text ? emitData.Markdown_text : '';
       draft.Title = emitData.Title;
 
-      console.log(emitData);
-
       isDisplayModal.value = false;
     };
 
     const closeModal = () => {
       isDisplayModal.value = false;
+    };
+
+    const deleteDraft = async (emitData: Draft) => {
+      isLoading.value = true;
+
+      try {
+        await store.deleteDraft(emitData.ID);
+      } catch (e) {
+        console.log(e);
+      }
+
+      isLoading.value = false;
     };
 
     return {
@@ -81,7 +92,8 @@ export default defineComponent({
       isDisplayModal,
       setDraft,
       draft,
-      closeModal
+      closeModal,
+      deleteDraft
     };
   }
 });
