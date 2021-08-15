@@ -9,7 +9,14 @@
         <div
           v-for="(draft, index) in draftList"
           :key="index"
+          class="relative"
         >
+          <p
+            class="absolute top-4 right-3"
+            @click="deleteDraft(draft)"
+          >
+            ×
+          </p>
           <DraftArticle
             :draft="draft"
             @click="callDraft(draft)"
@@ -35,7 +42,7 @@ export default defineComponent ({
       required: true
     }
   },
-  emits: ['closeModal', 'callDraft'],
+  emits: ['closeModal', 'callDraft', 'deleteDraft'],
   setup (_, { emit }) {
     const emitCloseModal = () => {
       emit('closeModal');
@@ -45,9 +52,14 @@ export default defineComponent ({
       emit('callDraft', draft);
     };
 
+    const deleteDraft = (draft: Draft) => {
+      emit('deleteDraft', draft);
+    };
+
     return {
       emitCloseModal,
-      callDraft
+      callDraft,
+      deleteDraft
     };
   }
 });
