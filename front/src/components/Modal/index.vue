@@ -35,14 +35,19 @@ export default defineComponent ({
       required: true
     }
   },
-  emits: ['closeModal'],
+  emits: ['closeModal', 'callDraft'],
   setup (_, { emit }) {
-    const emitCloseModal = (draft: Draft) => {
-      emit('closeModal', draft);
+    const emitCloseModal = () => {
+      emit('closeModal');
+    };
+
+    const callDraft = (draft: Draft) => {
+      emit('callDraft', draft);
     };
 
     return {
       emitCloseModal,
+      callDraft
     };
   }
 });

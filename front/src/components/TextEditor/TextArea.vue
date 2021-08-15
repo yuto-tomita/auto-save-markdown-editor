@@ -7,7 +7,6 @@
       placeholder="タイトル"
     >
   </div>
-  {{ draft }}
   <div class="flex">
     <textarea
       v-model="markdownText"

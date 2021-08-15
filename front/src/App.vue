@@ -3,6 +3,7 @@
     v-if="isDisplayModal"
     :draft-list="draftList"
     @closeModal="closeModal"
+    @callDraft="setDraft"
     @keyup.esc="closeModal"
   />
   <h1 class="text-center">
@@ -62,6 +63,10 @@ export default defineComponent({
     const setDraft = (emitData: Draft) => {
       draft.Markdown_text = emitData.Markdown_text ? emitData.Markdown_text : '';
       draft.Title = emitData.Title;
+
+      console.log(emitData);
+
+      isDisplayModal.value = false;
     };
 
     const closeModal = () => {
