@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"myapp/pkg/api"
@@ -27,8 +26,6 @@ func main() {
 			req.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-
-		fmt.Println(json.Markdown_text)
 		api.SaveMarkdown(db, json)
 
 		req.JSON(http.StatusOK, gin.H{json.Title: json.Markdown_text})
@@ -36,14 +33,12 @@ func main() {
 
 	router.GET("/", func(req *gin.Context) {
 		draftList := api.GetAll(db)
-		fmt.Println(draftList)
 		req.JSON(http.StatusOK, gin.H {
 			"res": draftList.Value,
 		})
 	})
 
 	router.DELETE("/draft/:id", func(req *gin.Context) {
-		fmt.Println(req.Param("id"))
 		api.DeleteDraft(db, req.Param("id"))
 	})
 	router.Run(":3000")
