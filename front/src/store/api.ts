@@ -26,6 +26,13 @@ export const apiStore = defineStore({
       } catch (e) {
         console.log(e);
       }
+    },
+    async deleteDraft (draftId: number): Promise<void> {
+      try {
+        await axios.delete(`${import.meta.env.VITE_API_URI}/draft/${draftId}`);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 });
