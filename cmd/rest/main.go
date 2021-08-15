@@ -41,6 +41,11 @@ func main() {
 			"res": draftList.Value,
 		})
 	})
+
+	router.DELETE("/draft/:id", func(req *gin.Context) {
+		fmt.Println(req.Param("id"))
+		api.DeleteDraft(db, req.Param("id"))
+	})
 	router.Run(":3000")
 }
 

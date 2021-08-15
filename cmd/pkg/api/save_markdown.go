@@ -22,3 +22,7 @@ func GetAll(db *gorm.DB) *gorm.DB {
 func SaveMarkdown(db *gorm.DB, json model.Draft) {
 	db.Create(&json)
 }
+
+func DeleteDraft(db *gorm.DB, id string) {
+	db.Delete(&draft{}, id)
+}
